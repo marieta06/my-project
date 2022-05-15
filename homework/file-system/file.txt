@@ -1,1 +1,1 @@
-Aida,Elena,Gurgen,Vazgen
+Vazgen,Gurgen,Elena,Aida

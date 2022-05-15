@@ -1,12 +1,17 @@
 const fs = require('fs');
 
-function readFile(path, option) {
-    let string = fs.readFileSync(path, option);
+function writeFile(path, data, option) {
+    let string = fs.writeFileSync(path, `${data}`, option);
     return string;
 }
 
-function sortArr(string) {
+function createArr(path, option) {
+    let string = fs.readFileSync(path, option);
     let arr = string.split(',');
+    return arr;
+}
+
+function sortArr(arr) {
     let sortArr = arr.sort((a, b) => {
         if (a < b) return -1;
         return 1;
@@ -14,11 +19,7 @@ function sortArr(string) {
     return sortArr;
 }
 
-function writeFile(path, data, option) {
-    let result = fs.writeFileSync(path, `${data}`, option);
-    return result;
-}
 
 module.exports = {
-    readFile, sortArr, writeFile
-}
+    createArr, sortArr, writeFile
+};

@@ -1,4 +1,6 @@
 const util = require("./util.js");
-let string = util.readFile('./homework/file-system/file.txt', 'utf-8');
-let data = util.sortArr(string);
-util.writeFile('./homework/file-system/file.txt', data, 'utf-8');
+const {writeFile, createArr, sortArr} = require("./util");
+const array = ['Vazgen', 'Gurgen', 'Elena', 'Aida'];
+util.writeFile('./homework/file-system/file.txt', array, 'utf-8');
+const arr = createArr('./homework/file-system/file.txt', 'utf-8');
+sortArr(arr);
