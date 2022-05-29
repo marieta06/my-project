@@ -1,18 +1,17 @@
 const XLSX = require('xlsx');
+const express = require('express');
+const app = express();
+const PORT = 3000;
+const PATH = './homework/excel/data.xlsx';
 
-const workbook = XLSX.readFile('./homework/excel/data.xlsx');
+app.listen(PORT, () => {
+    console.log('Server running on port:' + PORT);
+});
 
+const workbook = XLSX.readFile(PATH);
 const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+const excelData = XLSX.utils.sheet_to_json(worksheet);
 
-for (let i = 2; i < 7; i++) {
-    const name = worksheet[`A${i}`].v;
-    const surname = worksheet[`B${i}`].v;
-    const email = worksheet[`C${i}`].v;
-    const phone = worksheet[`D${i}`].v;
-    const age = worksheet[`E${i}`].v;
-    const grade = worksheet[`F${i}`].v;
-    console.log({
-        name: name, surname: surname, email: email, phone: phone, age: age, grade: grade
-    });
-}
-
+app.get('/', ((req, res) => {
+    res.status(200).send(excelData);
+}));
